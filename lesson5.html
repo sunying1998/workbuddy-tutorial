@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第5讲 给每一步配手段 · WorkBuddy 教学</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="dot">W</div>
+        <div class="name">WorkBuddy 教学</div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">首页</a>
+        <a href="lesson1.html">第1讲 · 认识 AI 助手</a>
+        <a href="lesson2.html">第2讲 · 用好空间</a>
+        <a href="lesson3.html">第3讲 · 和 AI 正确沟通</a>
+        <a href="lesson4.html">第4讲 · 拆解你的工作流</a>
+        <a href="lesson5.html" class="active">第5讲 · 给每一步配手段</a>
+        <a href="lesson6.html">第6讲 · 从数据到汇报</a>
+        <a href="lesson7.html">第7讲 · 实战串讲</a>
+        <a href="faq.html">FAQ · 常见问题</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <article>
+        <h1>第 5 讲 · 给每一步配手段</h1>
+        <p class="subtitle">自动化不是程序员的事,下面这些办法,大部分都不用你写代码。</p>
+
+        <h2>本讲目标</h2>
+        <p>知道每一步有什么自动化办法,查表即用。先破一个误区:<strong>自动化不是程序员的事。</strong></p>
+
+        <h2>5.1 手段分层总览(门槛从低到高)</h2>
+        <table>
+          <thead>
+            <tr><th>层级</th><th>方式</th><th>要不要写代码</th><th>适合场景</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>第 0 层</strong></td><td>直接把活交给 AI</td><td>不用</td><td>一切(首选)</td></tr>
+            <tr><td><strong>第 1 层</strong></td><td>WPS/Excel 内置功能</td><td>不用</td><td>套公式、汇总、对比</td></tr>
+            <tr><td><strong>第 2 层</strong></td><td>无代码平台(空间数据表、钉钉/飞书自动化、RPA)</td><td>基本不用</td><td>跨系统重复操作</td></tr>
+            <tr><td><strong>第 3 层</strong></td><td>让 AI 封装成脚本/模板,双击复用</td><td>不用(自己)</td><td>固定流程完全自动</td></tr>
+            <tr><td><strong>第 4 层</strong></td><td>爬虫 / Python 脚本</td><td>要,但由 AI 代劳</td><td>复杂定制</td></tr>
+          </tbody>
+        </table>
+        <div class="tip">
+          <div class="label">记住一条</div>
+          <p>你只管说需求,写代码的事交给 AI。第 0 层就是为此准备的。</p>
+        </div>
+
+        <h2>5.2 第 0 层:直接把活交给 AI(最推荐,零门槛)</h2>
+        <p>你不懂 Python 没关系——<strong>AI 就是那个"懂 Python 的人"</strong>。你只要用第 3 讲的方法把需求说清楚,AI 帮你写脚本、处理表格、生成结果。</p>
+        <div class="prompt">
+          <div class="label">可复制提示词</div>
+          <p>我不会写代码。我想【做什么事】,平时我是【手动怎么做的】。请帮我直接做好 / 写一个能自动完成的脚本,并告诉我以后怎么用。</p>
+        </div>
+
+        <h2>5.3 第 1 层:WPS/Excel 内置功能(零门槛)</h2>
+        <p>不装任何新东西,表格软件自带的就能解决一大半:</p>
+        <ul>
+          <li><strong>函数/公式</strong>:VLOOKUP、SUMIF、条件格式等,套一次下次复用</li>
+          <li><strong>数据透视表</strong>:快速汇总、对比</li>
+          <li><strong>宏录制</strong>:点"录制",把你手动操作录下来,以后一键重放(WPS/Excel 都支持)</li>
+        </ul>
+
+        <h2>5.4 第 2 层:无代码平台(基本不用写代码)</h2>
+        <p>跨系统、跨软件的重复操作,用现成的自动化工具:</p>
+        <ul>
+          <li><strong>空间数据表(重点)</strong>:把 Excel 导入空间的"数据表",变成可筛选、可查询的库,还能直接生成看板——这是汇总分析最省事的一条路(见第 2 讲、第 6 讲)</li>
+          <li><strong>钉钉/飞书/企微的机器人 + 定时</strong>:定时发通知、推送告警</li>
+          <li><strong>RPA 工具</strong>(如影刀、UiBot、Power Automate 桌面版):用"录制"方式把你的鼠标键盘操作录下来自动重放,适合"每天打开网页→下载→保存"这类活</li>
+          <li><strong>多维表格自动化</strong>(飞书/钉钉/WPS):设好规则,数据一变自动触发计算、通知</li>
+        </ul>
+
+        <h2>5.5 第 3 层:让 AI 封装,一次做好反复用(固定流程首选)</h2>
+        <p>有固定流程想完全自动?让 AI 帮你做一次,以后你只负责"双击"或"粘贴":</p>
+        <ul>
+          <li><strong>封装成脚本</strong>:AI 写好脚本后,你双击 .bat 文件就跑完</li>
+          <li><strong>封装成模板</strong>:AI 做好带公式的模板,你每次把新数据贴进去,结果自动出</li>
+        </ul>
+
+        <h2>5.6 第 4 层:爬虫 / Python 脚本(复杂定制,交给 AI)</h2>
+        <p>你提到的"爬虫""操控电脑下载"属于这一层,门槛最高——但<strong>你不用自己学</strong>。把需求提给 AI,它写代码、你验证结果。你只需会说"要抓什么数据、从哪个网站、存到哪"。</p>
+
+        <h2>5.7 回到三步工作,不懂代码怎么选</h2>
+        <p>以"自动生成数据判断"为例,不懂代码的同事可以这样选:</p>
+        <table>
+          <thead>
+            <tr><th>步骤</th><th>不懂代码怎么选</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>下载数据</td><td>第 0 层让 AI 写定时下载脚本 / 第 2 层用 RPA 录制下载</td></tr>
+            <tr><td>套公式</td><td>第 1 层模板覆盖 / 空间数据表导入后筛选查询</td></tr>
+            <tr><td>汇总</td><td>第 0 层让 AI 汇总分析 / 空间数据表 + 看板</td></tr>
+          </tbody>
+        </table>
+
+        <h2>本讲小结</h2>
+        <ul>
+          <li>手段分 5 层,门槛从低到高,前 3 层不用写代码</li>
+          <li>核心心法:<strong>你不懂代码没关系,AI 懂;你负责说清楚,它负责干</strong></li>
+          <li>优先用第 0~2 层,复杂需求交给 AI(第 4 层)</li>
+        </ul>
+      </article>
+
+      <div class="pager">
+        <a href="lesson4.html">← 上一讲:拆解你的工作流</a>
+        <a href="lesson6.html">下一讲:从数据到汇报 →</a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
