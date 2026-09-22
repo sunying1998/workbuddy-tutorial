@@ -70,15 +70,27 @@
     border-left:4px solid #7c3aed; border-radius:12px; padding:22px 26px; max-width:860px; }
   .promptbox .lb { font-size:13px; font-weight:800; letter-spacing:2px; color:#7c3aed; margin-bottom:10px; }
   .promptbox .p { font-size:18px; color:#334155; line-height:1.8; }
+  .copybar { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .copybtn { display:inline-flex; align-items:center; gap:6px; height:34px; padding:0 16px;
+    border:none; border-radius:17px; background:linear-gradient(100deg,#0d9488,#14b8a6);
+    color:#fff; font-size:13.5px; font-weight:700; cursor:pointer; letter-spacing:0;
+    font-family:inherit; box-shadow:0 6px 16px -6px rgba(13,148,136,.7); transition:.25s; }
+  .copybtn:hover { transform:translateY(-1px); box-shadow:0 9px 22px -6px rgba(13,148,136,.85); }
+  .copybtn.done { background:linear-gradient(100deg,#7c3aed,#a21caf); box-shadow:0 6px 16px -6px rgba(124,58,237,.65); }
+  .steps { list-style:none; margin:26px 0 0; padding:0; }
+  .steps li { position:relative; padding-left:40px; margin:14px 0; font-size:16.5px;
+    color:#475569; line-height:1.6; }
+  .steps li b { color:#0b1220; }
+  .steps li::before { content:attr(data-n); position:absolute; left:0; top:2px;
+    width:26px; height:26px; border-radius:50%; background:rgba(13,148,136,.1); color:#0d9488;
+    font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .repo { margin-top:16px; font-size:12.5px; color:#94a3b8; word-break:break-all; }
   .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px; max-width:900px; }
   .cell { background:#fff; border:1px solid rgba(15,23,42,.055); border-radius:12px;
     padding:20px 22px; box-shadow:0 6px 20px -8px rgba(15,23,42,.08); }
   .cell .k { font-size:17px; font-weight:750; color:#0b1220; margin-bottom:6px; }
   .cell .v { font-size:15px; color:#64748b; line-height:1.65; }
   .breath { align-items:center; text-align:center; }
-  /* 修正：呼吸页内容被包在两层 slide 内，内层需强制可见 */
-  .slide > .slide.breath { position:static; opacity:1; transform:none; padding:0;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
   .breath .big { font-size:44px; line-height:1.5; font-weight:750; color:#0b1220;
     max-width:840px; letter-spacing:0; }
   .breath .rule { width:64px; height:3px; margin:32px auto 0;
@@ -91,7 +103,7 @@
   .slide.active .step:nth-child(3) { animation:rise .5s ease backwards .46s; }
   .slide.active .step:nth-child(4) { animation:rise .5s ease backwards .55s; }
   .slide.active .quote, .slide.active .promptbox, .slide.active ul.plain,
-  .slide.active .grid2, .slide.active .menu { animation:rise .55s ease backwards .5s; }
+  .slide.active .grid2, .slide.active .menu, .slide.active .steps { animation:rise .55s ease backwards .5s; }
   .footer { position:absolute; bottom:36px; left:104px; right:104px;
     display:flex; justify-content:space-between; align-items:center; }
   .dots { display:flex; gap:8px; }
@@ -207,9 +219,38 @@ function show(i){
 }
 function go(n){ let t=cur+n; if(t<0)t=0; if(t>=slides.length)t=slides.length-1; show(t); }
 document.addEventListener('keydown',e=>{
+  const t=e.target||{};
+  if(t.tagName==='BUTTON'||t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='A') return;
   if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') go(1);
   if(e.key==='ArrowLeft'||e.key==='PageUp') go(-1);
 });
+function copyText(txt,btn){
+  const ok=()=>{
+    const old=btn.dataset.label||btn.textContent;
+    btn.dataset.label=old;
+    btn.textContent='已复制 ✓'; btn.classList.add('done');
+    clearTimeout(btn._t);
+    btn._t=setTimeout(()=>{ btn.textContent=old; btn.classList.remove('done'); },1800);
+  };
+  const fallback=()=>{
+    const ta=document.createElement('textarea');
+    ta.value=txt; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.top='-1000px'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,txt.length);
+    let r=false; try{ r=document.execCommand('copy'); }catch(err){}
+    document.body.removeChild(ta);
+    if(r) ok(); else alert('复制失败，请手动选中这段文字复制');
+  };
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(txt).then(ok).catch(fallback);
+  } else fallback();
+}
+function copyEl(btn){
+  const box=btn.closest('.promptbox');
+  const el=box?box.querySelector('.p'):null;
+  if(!el) return;
+  copyText((el.innerText||el.textContent||'').trim(),btn);
+}
 show(0);
 </script>
 </body>
