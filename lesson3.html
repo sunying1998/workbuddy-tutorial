@@ -76,6 +76,9 @@
   .cell .k { font-size:17px; font-weight:750; color:#0b1220; margin-bottom:6px; }
   .cell .v { font-size:15px; color:#64748b; line-height:1.65; }
   .breath { align-items:center; text-align:center; }
+  /* 修正：呼吸页内容被包在两层 slide 内，内层需强制可见 */
+  .slide > .slide.breath { position:static; opacity:1; transform:none; padding:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
   .breath .big { font-size:44px; line-height:1.5; font-weight:750; color:#0b1220;
     max-width:840px; letter-spacing:0; }
   .breath .rule { width:64px; height:3px; margin:32px auto 0;
