@@ -1,118 +1,197 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第5讲 给每一步配手段 · WorkBuddy 教学</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第5讲 · 给每一步配手段 · WorkBuddy 教学</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;
+    background:#f8fafc; overflow:hidden; -webkit-font-smoothing:antialiased; }
+  .deck { position:relative; width:100vw; height:100vh; }
+  .slide { position:absolute; inset:0; display:flex; flex-direction:column;
+    justify-content:center; padding:88px 104px;
+    opacity:0; transform:translateX(36px);
+    transition:opacity .5s ease, transform .55s cubic-bezier(.22,.85,.28,1);
+    pointer-events:none; }
+  .slide.active { opacity:1; transform:translateX(0); pointer-events:auto; }
+  .slide.out { opacity:0; transform:translateX(-36px); }
+  .slide::before { content:''; position:absolute; inset:0; z-index:-2;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(13,148,136,.085), transparent 46%),
+      radial-gradient(ellipse at 12% 90%, rgba(124,58,237,.075), transparent 48%),
+      linear-gradient(160deg,#fbfcfe 0%,#f5f8fc 48%,#faf8fd 100%); }
+  .slide::after { content:''; position:absolute; inset:0; z-index:-1;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E"); }
+  .eyebrow { font-size:14px; font-weight:700; letter-spacing:3.5px; color:#0d9488; margin-bottom:22px; }
+  h1 { font-size:60px; line-height:1.22; color:#0b1220; margin-bottom:22px; font-weight:750; letter-spacing:0; }
+  h2 { font-size:40px; line-height:1.28; color:#0b1220; margin-bottom:24px; font-weight:750; letter-spacing:0; }
+  .lead { font-size:21px; color:#5b6b82; line-height:1.85; max-width:800px; }
+  .steps { display:flex; gap:20px; margin-top:40px; }
+  .step { flex:1; background:#fff; border:1px solid rgba(15,23,42,.055);
+    border-radius:16px; padding:28px 24px 26px;
+    box-shadow:0 1px 2px rgba(15,23,42,.035), 0 10px 28px -8px rgba(15,23,42,.10);
+    position:relative; overflow:hidden; transition:transform .35s cubic-bezier(.22,.85,.28,1), box-shadow .35s; }
+  .step::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .step:nth-child(1)::before { background:#0d9488; }
+  .step:nth-child(2)::before { background:#7c3aed; }
+  .step:nth-child(3)::before { background:#d97706; }
+  .step:nth-child(4)::before { background:#a21caf; }
+  .step:hover { transform:translateY(-5px); box-shadow:0 2px 4px rgba(15,23,42,.05), 0 20px 44px -12px rgba(15,23,42,.17); }
+  .step .n { display:inline-block; font-size:12px; font-weight:800; letter-spacing:2px;
+    padding:5px 13px; border-radius:20px; margin-bottom:12px; }
+  .step:nth-child(1) .n { color:#0f766e; background:rgba(13,148,136,.09); }
+  .step:nth-child(2) .n { color:#6d28d9; background:rgba(124,58,237,.09); }
+  .step:nth-child(3) .n { color:#b45309; background:rgba(217,119,6,.10); }
+  .step:nth-child(4) .n { color:#86198f; background:rgba(162,28,175,.09); }
+  .step .t { font-size:26px; font-weight:750; color:#0b1220; margin-bottom:10px; letter-spacing:0; }
+  .step .d { font-size:16px; color:#64748b; line-height:1.7; }
+  .compare { display:flex; gap:20px; margin-top:36px; }
+  .box { flex:1; border-radius:16px; padding:28px 26px; color:#fff; position:relative; overflow:hidden; }
+  .box.yes { background:linear-gradient(145deg,#0f766e,#0d9488 60%,#14b8a6); }
+  .box.no { background:linear-gradient(145deg,#b45309,#d97706 60%,#ea9a22); }
+  .box.violet { background:linear-gradient(145deg,#5b21b6,#7c3aed 60%,#8b5cf6); }
+  .box::after { content:''; position:absolute; top:-42%; right:-16%; width:190px; height:190px;
+    border-radius:50%; background:rgba(255,255,255,.09); }
+  .box h3 { font-size:22px; margin-bottom:14px; font-weight:750; letter-spacing:0; }
+  .box ul { list-style:none; font-size:16px; line-height:2.05; }
+  .box li::before { content:'—'; margin-right:10px; opacity:.6; font-weight:700; }
+  ul.plain { list-style:none; margin-top:26px; }
+  ul.plain li { font-size:19px; color:#475569; line-height:2.1; padding-left:22px; position:relative; }
+  ul.plain li::before { content:''; position:absolute; left:0; top:15px; width:8px; height:8px;
+    border-radius:50%; background:#0d9488; }
+  .quote { margin-top:38px; padding:22px 34px; border-radius:14px;
+    background:linear-gradient(100deg,#86198f,#a21caf 55%,#be185d);
+    color:#fff; font-size:23px; font-weight:700; letter-spacing:0;
+    box-shadow:0 12px 34px -10px rgba(162,28,175,.45); display:inline-block; }
+  .quote.teal { background:linear-gradient(100deg,#0f766e,#0d9488 55%,#14b8a6);
+    box-shadow:0 12px 34px -10px rgba(13,148,136,.42); }
+  .promptbox { margin-top:34px; background:#fff; border:1px solid rgba(15,23,42,.07);
+    border-left:4px solid #7c3aed; border-radius:12px; padding:22px 26px; max-width:860px; }
+  .promptbox .lb { font-size:13px; font-weight:800; letter-spacing:2px; color:#7c3aed; margin-bottom:10px; }
+  .promptbox .p { font-size:18px; color:#334155; line-height:1.8; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px; max-width:900px; }
+  .cell { background:#fff; border:1px solid rgba(15,23,42,.055); border-radius:12px;
+    padding:20px 22px; box-shadow:0 6px 20px -8px rgba(15,23,42,.08); }
+  .cell .k { font-size:17px; font-weight:750; color:#0b1220; margin-bottom:6px; }
+  .cell .v { font-size:15px; color:#64748b; line-height:1.65; }
+  .breath { align-items:center; text-align:center; }
+  .breath .big { font-size:44px; line-height:1.5; font-weight:750; color:#0b1220;
+    max-width:840px; letter-spacing:0; }
+  .breath .rule { width:64px; height:3px; margin:32px auto 0;
+    background:linear-gradient(90deg,#a21caf,#be185d); border-radius:2px; }
+  @keyframes rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+  .slide.active .eyebrow { animation:rise .45s ease backwards; }
+  .slide.active h1, .slide.active h2, .slide.active .lead, .slide.active .big { animation:rise .5s ease backwards .08s; }
+  .slide.active .step:nth-child(1), .slide.active .box:nth-child(1) { animation:rise .5s ease backwards .22s; }
+  .slide.active .step:nth-child(2), .slide.active .box:nth-child(2) { animation:rise .5s ease backwards .34s; }
+  .slide.active .step:nth-child(3) { animation:rise .5s ease backwards .46s; }
+  .slide.active .step:nth-child(4) { animation:rise .5s ease backwards .55s; }
+  .slide.active .quote, .slide.active .promptbox, .slide.active ul.plain,
+  .slide.active .grid2, .slide.active .menu { animation:rise .55s ease backwards .5s; }
+  .footer { position:absolute; bottom:36px; left:104px; right:104px;
+    display:flex; justify-content:space-between; align-items:center; }
+  .dots { display:flex; gap:8px; }
+  .dot { width:8px; height:8px; border-radius:50%; background:#cfd8e3; cursor:pointer;
+    transition:.35s cubic-bezier(.22,.85,.28,1); }
+  .dot.active { width:26px; border-radius:5px; background:#7c3aed; }
+  .ctrl { display:flex; gap:10px; }
+  .ctrl button { width:40px; height:40px; border-radius:50%; border:1px solid rgba(15,23,42,.08);
+    background:#fff; color:#334155; font-size:17px; cursor:pointer;
+    box-shadow:0 2px 8px rgba(15,23,42,.06); transition:.28s; }
+  .ctrl button:hover { background:#7c3aed; color:#fff; border-color:#7c3aed; }
+  .bar { position:absolute; bottom:0; left:0; height:3px;
+    background:linear-gradient(90deg,#0d9488,#7c3aed,#a21caf);
+    transition:.45s cubic-bezier(.22,.85,.28,1); }
+  .hint { position:absolute; top:30px; right:40px; font-size:12px; color:#a8b3c4; letter-spacing:1px; }
+  .topnav { position:absolute; top:28px; left:104px; display:flex; gap:18px; font-size:14px; }
+  .topnav a { color:#94a3b8; text-decoration:none; transition:.25s; }
+  .topnav a:hover, .topnav a.on { color:#7c3aed; font-weight:700; }
+  .menu { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:34px; max-width:900px; }
+  .menu a { display:block; background:#fff; border:1px solid rgba(15,23,42,.055); border-radius:14px;
+    padding:22px 20px; text-decoration:none; color:inherit;
+    box-shadow:0 8px 24px -10px rgba(15,23,42,.10); transition:.3s; }
+  .menu a:hover { transform:translateY(-5px); border-color:rgba(124,58,237,.35); }
+  .menu .no { font-size:13px; font-weight:800; color:#0d9488; letter-spacing:1.5px; }
+  .menu .ti { font-size:20px; font-weight:750; color:#0b1220; margin:8px 0 6px; letter-spacing:0; }
+  .menu .de { font-size:14px; color:#64748b; line-height:1.6; }
+</style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="logo">
-        <div class="dot">W</div>
-        <div class="name">WorkBuddy 教学</div>
-      </div>
-      <nav class="nav">
-        <a href="index.html">首页</a>
-        <a href="lesson1.html">第1讲 · 认识 AI 助手</a>
-        <a href="lesson2.html">第2讲 · 用好空间</a>
-        <a href="lesson3.html">第3讲 · 和 AI 正确沟通</a>
-        <a href="lesson4.html">第4讲 · 拆解你的工作流</a>
-        <a href="lesson5.html" class="active">第5讲 · 给每一步配手段</a>
-        <a href="lesson6.html">第6讲 · 从数据到汇报</a>
-        <a href="lesson7.html">第7讲 · 实战串讲</a>
-        <a href="skills.html">优质 Skills</a>
-        <a href="faq.html">FAQ · 常见问题</a>
-      </nav>
-    </aside>
+<div class="deck">
+<div class="topnav">
+  <a href="index.html">首页</a>
+  <a href="lesson1.html">1 认识AI</a>
+  <a href="lesson2.html">2 空间</a>
+  <a href="lesson3.html">3 沟通</a>
+  <a href="lesson4.html">4 拆解</a>
+  <a href="lesson5.html" class="on">5 配手段</a>
+  <a href="lesson6.html">6 汇报</a>
+  <a href="lesson7.html">7 实战</a>
+  <a href="skills.html">优质Skills</a>
+  <a href="faq.html">FAQ</a>
+</div>
 
-    <main class="content">
-      <article>
-        <h1>第 5 讲 · 给每一步配手段</h1>
-        <p class="subtitle">自动化不是程序员的事,下面这些办法,大部分都不用你写代码。</p>
-
-        <h2>本讲目标</h2>
-        <p>知道每一步有什么自动化办法,查表即用。先破一个误区:<strong>自动化不是程序员的事。</strong></p>
-
-        <h2>5.1 手段分层总览(门槛从低到高)</h2>
-        <table>
-          <thead>
-            <tr><th>层级</th><th>方式</th><th>要不要写代码</th><th>适合场景</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>第 0 层</strong></td><td>直接把活交给 AI</td><td>不用</td><td>一切(首选)</td></tr>
-            <tr><td><strong>第 1 层</strong></td><td>WPS/Excel 内置功能</td><td>不用</td><td>套公式、汇总、对比</td></tr>
-            <tr><td><strong>第 2 层</strong></td><td>无代码平台(空间数据表、钉钉/飞书自动化、RPA)</td><td>基本不用</td><td>跨系统重复操作</td></tr>
-            <tr><td><strong>第 3 层</strong></td><td>让 AI 封装成脚本/模板,双击复用</td><td>不用(自己)</td><td>固定流程完全自动</td></tr>
-            <tr><td><strong>第 4 层</strong></td><td>爬虫 / Python 脚本</td><td>要,但由 AI 代劳</td><td>复杂定制</td></tr>
-          </tbody>
-        </table>
-        <div class="tip">
-          <div class="label">记住一条</div>
-          <p>你只管说需求,写代码的事交给 AI。第 0 层就是为此准备的。</p>
-        </div>
-
-        <h2>5.2 第 0 层:直接把活交给 AI(最推荐,零门槛)</h2>
-        <p>你不懂 Python 没关系——<strong>AI 就是那个"懂 Python 的人"</strong>。你只要用第 3 讲的方法把需求说清楚,AI 帮你写脚本、处理表格、生成结果。</p>
-        <div class="prompt">
-          <div class="label">可复制提示词</div>
-          <p>我不会写代码。我想【做什么事】,平时我是【手动怎么做的】。请帮我直接做好 / 写一个能自动完成的脚本,并告诉我以后怎么用。</p>
-        </div>
-
-        <h2>5.3 第 1 层:WPS/Excel 内置功能(零门槛)</h2>
-        <p>不装任何新东西,表格软件自带的就能解决一大半:</p>
-        <ul>
-          <li><strong>函数/公式</strong>:VLOOKUP、SUMIF、条件格式等,套一次下次复用</li>
-          <li><strong>数据透视表</strong>:快速汇总、对比</li>
-          <li><strong>宏录制</strong>:点"录制",把你手动操作录下来,以后一键重放(WPS/Excel 都支持)</li>
-        </ul>
-
-        <h2>5.4 第 2 层:无代码平台(基本不用写代码)</h2>
-        <p>跨系统、跨软件的重复操作,用现成的自动化工具:</p>
-        <ul>
-          <li><strong>空间数据表(重点)</strong>:把 Excel 导入空间的"数据表",变成可筛选、可查询的库,还能直接生成看板——这是汇总分析最省事的一条路(见第 2 讲、第 6 讲)</li>
-          <li><strong>钉钉/飞书/企微的机器人 + 定时</strong>:定时发通知、推送告警</li>
-          <li><strong>RPA 工具</strong>(如影刀、UiBot、Power Automate 桌面版):用"录制"方式把你的鼠标键盘操作录下来自动重放,适合"每天打开网页→下载→保存"这类活</li>
-          <li><strong>多维表格自动化</strong>(飞书/钉钉/WPS):设好规则,数据一变自动触发计算、通知</li>
-        </ul>
-
-        <h2>5.5 第 3 层:让 AI 封装,一次做好反复用(固定流程首选)</h2>
-        <p>有固定流程想完全自动?让 AI 帮你做一次,以后你只负责"双击"或"粘贴":</p>
-        <ul>
-          <li><strong>封装成脚本</strong>:AI 写好脚本后,你双击 .bat 文件就跑完</li>
-          <li><strong>封装成模板</strong>:AI 做好带公式的模板,你每次把新数据贴进去,结果自动出</li>
-        </ul>
-
-        <h2>5.6 第 4 层:爬虫 / Python 脚本(复杂定制,交给 AI)</h2>
-        <p>你提到的"爬虫""操控电脑下载"属于这一层,门槛最高——但<strong>你不用自己学</strong>。把需求提给 AI,它写代码、你验证结果。你只需会说"要抓什么数据、从哪个网站、存到哪"。</p>
-
-        <h2>5.7 回到三步工作,不懂代码怎么选</h2>
-        <p>以"自动生成数据判断"为例,不懂代码的同事可以这样选:</p>
-        <table>
-          <thead>
-            <tr><th>步骤</th><th>不懂代码怎么选</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>下载数据</td><td>第 0 层让 AI 写定时下载脚本 / 第 2 层用 RPA 录制下载</td></tr>
-            <tr><td>套公式</td><td>第 1 层模板覆盖 / 空间数据表导入后筛选查询</td></tr>
-            <tr><td>汇总</td><td>第 0 层让 AI 汇总分析 / 空间数据表 + 看板</td></tr>
-          </tbody>
-        </table>
-
-        <h2>本讲小结</h2>
-        <ul>
-          <li>手段分 5 层,门槛从低到高,前 3 层不用写代码</li>
-          <li>核心心法:<strong>你不懂代码没关系,AI 懂;你负责说清楚,它负责干</strong></li>
-          <li>优先用第 0~2 层,复杂需求交给 AI(第 4 层)</li>
-        </ul>
-      </article>
-
-      <div class="pager">
-        <a href="lesson4.html">← 上一讲:拆解你的工作流</a>
-        <a href="lesson6.html">下一讲:从数据到汇报 →</a>
-      </div>
-    </main>
+<section class="slide active"><div class="eyebrow">第 5 讲</div>
+    <h1>给每一步配手段</h1>
+    <p class="lead">自动化不是程序员的事——下面这些办法，大部分不用你写代码。</p>
+    <div class="quote">5 层手段，前 3 层不用写代码</div></section>
+<section class="slide"><div class="eyebrow">手段分层</div>
+    <h2>按门槛从低到高</h2>
+    <ul class="plain">
+      <li>第 0 层 —— 直接把活交给 AI（首选）</li>
+      <li>第 1 层 —— WPS / Excel 内置功能（函数、透视、宏录制）</li>
+      <li>第 2 层 —— 无代码平台（空间数据表、钉钉/飞书、RPA）</li>
+      <li>第 3 层 —— 让 AI 封装成脚本 / 模板，双击复用</li>
+      <li>第 4 层 —— 爬虫 / Python 脚本（复杂定制，由 AI 代劳）</li>
+    </ul></section>
+<section class="slide"><div class="eyebrow">回到三步</div>
+    <h2>不懂代码怎么选</h2>
+    <div class="grid2">
+      <div class="cell"><div class="k">下载数据</div><div class="v">第 0 层让 AI 写定时下载脚本，或第 2 层用 RPA 录制</div></div>
+      <div class="cell"><div class="k">套公式</div><div class="v">第 1 层模板覆盖，或导入空间数据表后直接筛选查询</div></div>
+      <div class="cell"><div class="k">汇总分析</div><div class="v">第 0 层让 AI 汇总，或空间数据表 + 看板</div></div>
+      <div class="cell"><div class="k">选的原则</div><div class="v">优先用低门槛那层，能解决就不往上走</div></div>
+    </div></section>
+<section class="slide"><div class="slide breath"><div class="eyebrow">核心心法</div>
+    <div class="big">你不懂代码没关系，<br>AI 就是那个懂代码的人</div><div class="rule"></div></div></section>
+<div class="hint">← → 翻页</div>
+  <div class="footer">
+    <div class="dots" id="dots"></div>
+    <div class="ctrl">
+      <button onclick="go(-1)">&#8249;</button>
+      <button onclick="go(1)">&#8250;</button>
+    </div>
   </div>
+  <div class="bar" id="bar" style="width:20%"></div>
+</div>
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsBox = document.getElementById('dots');
+let cur = 0;
+slides.forEach((_,i)=>{
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = ()=>show(i);
+  dotsBox.appendChild(d);
+});
+const dots = dotsBox.querySelectorAll('.dot');
+function show(i){
+  slides.forEach((s,idx)=>{
+    s.classList.remove('active','out');
+    if(idx===i) s.classList.add('active');
+    else if(idx<i) s.classList.add('out');
+  });
+  dots.forEach((d,idx)=>d.classList.toggle('active', idx===i));
+  cur = i;
+  document.getElementById('bar').style.width = ((i+1)/slides.length*100)+'%';
+}
+function go(n){ let t=cur+n; if(t<0)t=0; if(t>=slides.length)t=slides.length-1; show(t); }
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') go(1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp') go(-1);
+});
+show(0);
+</script>
 </body>
 </html>
