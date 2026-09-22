@@ -76,6 +76,9 @@
   .cell .k { font-size:17px; font-weight:750; color:#0b1220; margin-bottom:6px; }
   .cell .v { font-size:15px; color:#64748b; line-height:1.65; }
   .breath { align-items:center; text-align:center; }
+  /* 修正：呼吸页内容被包在两层 slide 内，内层需强制可见 */
+  .slide > .slide.breath { position:static; opacity:1; transform:none; padding:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
   .breath .big { font-size:44px; line-height:1.5; font-weight:750; color:#0b1220;
     max-width:840px; letter-spacing:0; }
   .breath .rule { width:64px; height:3px; margin:32px auto 0;
@@ -158,8 +161,8 @@
       <div class="cell"><div class="k">汇总分析</div><div class="v">第 0 层让 AI 汇总，或空间数据表 + 看板</div></div>
       <div class="cell"><div class="k">选的原则</div><div class="v">优先用低门槛那层，能解决就不往上走</div></div>
     </div></section>
-<section class="slide"><div class="slide breath"><div class="eyebrow">核心心法</div>
-    <div class="big">你不懂代码没关系，<br>AI 就是那个懂代码的人</div><div class="rule"></div></div></section>
+<section class="slide breath"><div class="eyebrow">核心心法</div>
+    <div class="big">你不懂代码没关系，<br>AI 就是那个懂代码的人</div><div class="rule"></div></section>
 <div class="hint">← → 翻页</div>
   <div class="footer">
     <div class="dots" id="dots"></div>
