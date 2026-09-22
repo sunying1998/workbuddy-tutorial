@@ -76,6 +76,9 @@
   .cell .k { font-size:17px; font-weight:750; color:#0b1220; margin-bottom:6px; }
   .cell .v { font-size:15px; color:#64748b; line-height:1.65; }
   .breath { align-items:center; text-align:center; }
+  /* 修正：呼吸页内容被包在两层 slide 内，内层需强制可见 */
+  .slide > .slide.breath { position:static; opacity:1; transform:none; padding:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
   .breath .big { font-size:44px; line-height:1.5; font-weight:750; color:#0b1220;
     max-width:840px; letter-spacing:0; }
   .breath .rule { width:64px; height:3px; margin:32px auto 0;
@@ -165,8 +168,8 @@
       <div class="cell"><div class="k">存话术</div><div class="v">好用的提示词存下来，攒成自己的库</div></div>
       <div class="cell"><div class="k">勤反馈</div><div class="v">做对肯定、做错指出，它越来越对齐你</div></div>
     </div></section>
-<section class="slide"><div class="slide breath"><div class="eyebrow">第 1 讲 · 小结</div>
-    <div class="big">重复的活交给 AI，<br>判断的活留给自己</div><div class="rule"></div></div></section>
+<section class="slide breath"><div class="eyebrow">第 1 讲 · 小结</div>
+    <div class="big">重复的活交给 AI，<br>判断的活留给自己</div><div class="rule"></div></section>
 <div class="hint">← → 翻页</div>
   <div class="footer">
     <div class="dots" id="dots"></div>
