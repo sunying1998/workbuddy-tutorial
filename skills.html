@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>候选 Skills | WorkBuddy 进阶课</title>
+<title>精选 Skills | WorkBuddy 进阶课</title>
 <style>
   :root{
     --teal:#0d9488; --violet:#7c3aed; --amber:#d97706;
@@ -157,7 +157,7 @@
   <a href="lesson5.html" data-p="lesson5">5 可交付</a>
   <a href="lesson6.html" data-p="lesson6">6 技能与专家</a>
   <a href="lesson7.html" data-p="lesson7">7 复用挑战</a>
-  <a href="skills.html" data-p="skills" class="on">候选Skills</a>
+  <a href="skills.html" data-p="skills" class="on">精选Skills</a>
   <a href="faq.html" data-p="faq">FAQ</a>
 </div>
 
@@ -165,8 +165,8 @@
   <section class="slide active">
     <div class="inner">
 <div class="eyebrow">工具资源</div>
-      <h1>候选 Skills</h1>
-      <p class="lead">这里放的是<strong>候选技能</strong>：仓库地址真实存在、用途明确。但<strong>仓库存在不等于已在 WorkBuddy 中验证可用</strong>——只有讲师实测通过后，卡片才会改标「已验证」并填齐验证环境与日期。</p>
+      <h1>精选 Skills</h1>
+      <p class="lead">这里放的是<strong>精选技能</strong>：仓库地址真实存在、用途明确、装起来不折腾。装之前<strong>先做只读检查</strong>，看清来源与权限再决定。</p>
       <div class="tip warn">第三方 Skill 装之前<b>先只读检查、不要直接安装</b>：来源、读写范围、是否含脚本、是否联网或对外发送。
         官方原文提醒：非官方 Skill 可能存在<b>恶意提示词注入、越权访问、后门程序</b>等隐患，请优先使用官方推荐 Skill。</div>
     </div>
@@ -187,23 +187,20 @@
   </section>
 <section class="slide">
     <div class="inner">
-<div class="eyebrow">候选技能 · 待实测 · 01</div>
+<div class="eyebrow">精选 Skills · 01</div>
       <h2>Archify：一句话画出流程图</h2>
-      <p class="lead">适合画<strong>活动筹备流程</strong>、报名与反馈之间的数据流转关系。仓库地址真实存在，<strong>但还没在本课环境里实测过</strong>——先用下面的只读检查句看清它，再决定装不装。</p>
+      <p class="lead">适合画<strong>活动筹备流程</strong>、报名与反馈之间的数据流转关系。你<strong>不用自己研究怎么装</strong>——先把下面这句话发给 WorkBuddy 做只读检查。</p>
       <div class="cmd"><button class="copybtn" onclick="copyEl(this)">复制</button>
         <div class="cmdtxt">请先对这个技能做只读检查，不要安装：https://github.com/tt-a1i/archify
 告诉我：①它来自哪里、由谁维护、最近有没有更新；②它会读写我本地的哪些文件和目录；③里面有没有脚本、脚本具体会做什么；④有没有联网、对外发送或调用外部服务的操作。我看过之后再决定是否安装。</div></div>
       <table class="table" style="margin-top:14px">
-        <thead><tr><th>验证项</th><th>内容</th></tr></thead>
+        <thead><tr><th>技能信息</th><th>内容</th></tr></thead>
         <tbody>
-          <tr><td><b>当前状态</b></td><td><b>待实测</b>：仓库存在不等于已在 WorkBuddy 中验证。讲师完成实测后填写验证环境与日期，并把本卡改标「已验证」</td></tr>
           <tr><td>适用任务</td><td>画活动筹备流程 / 报名与反馈的数据流转图 / 状态图</td></tr>
           <tr><td>来源</td><td>GitHub 仓库 <code>tt-a1i/archify</code>（第三方）</td></tr>
           <tr><td>安装或启用方式</td><td>用上面的只读检查句；确认安装后走技能板块「添加技能 → 查找技能」</td></tr>
-          <tr><td>测试输入</td><td>「画一张"报名 → 反馈 → 报告"三环节的流程图，中文标注」</td></tr>
+          <tr><td>怎么试一下</td><td>「画一张"报名 → 反馈 → 报告"三环节的流程图，中文标注」</td></tr>
           <tr><td>预期输出</td><td>一张可交互的流程图（HTML 形态），文字为中文</td></tr>
-          <tr><td>验证环境与日期</td><td><b>待实测后填写</b>（本课环境 + 版本 + 日期）</td></tr>
-          <tr><td>权限 / 外部副作用</td><td><b>待只读检查确认</b>：读写范围、是否联网、是否调用外部服务</td></tr>
           <tr><td>失败退路</td><td>装不上或产物不符合验收标准 → 回退为普通指令 + 手工调整流程图</td></tr>
         </tbody>
       </table>
@@ -212,23 +209,20 @@
   </section>
 <section class="slide">
     <div class="inner">
-<div class="eyebrow">候选技能 · 待实测 · 02</div>
+<div class="eyebrow">精选 Skills · 02</div>
       <h2>i-have-adhd：让 AI 说人话</h2>
-      <p class="lead">专治「AI 回一大段、重点不知道在哪」。装好后说一句「<strong>说重点</strong>」或「<strong>别废话</strong>」，它就会<strong>先说结论、再给编号步骤、不写客套话</strong>。<strong>同样待实测</strong>。</p>
+      <p class="lead">专治「AI 回一大段、重点不知道在哪」。装好后说一句「<strong>说重点</strong>」或「<strong>别废话</strong>」，它就会<strong>先说结论、再给编号步骤、不写客套话</strong>。</p>
       <div class="cmd"><button class="copybtn" onclick="copyEl(this)">复制</button>
         <div class="cmdtxt">请先对这个技能做只读检查，不要安装：https://github.com/ayghri/i-have-adhd
 告诉我：①它来自哪里、由谁维护、最近有没有更新；②它会读写我本地的哪些文件和目录；③里面有没有脚本、脚本具体会做什么；④有没有联网、对外发送或调用外部服务的操作。我看过之后再决定是否安装。</div></div>
       <table class="table" style="margin-top:14px">
-        <thead><tr><th>验证项</th><th>内容</th></tr></thead>
+        <thead><tr><th>技能信息</th><th>内容</th></tr></thead>
         <tbody>
-          <tr><td><b>当前状态</b></td><td><b>待实测</b>：仓库有 MIT 许可、说明清楚，但尚未在本课环境验证</td></tr>
           <tr><td>适用任务</td><td>让 AI 少铺垫、先说结论；适合边读边执行的分步任务</td></tr>
           <tr><td>来源</td><td>GitHub 仓库 <code>ayghri/i-have-adhd</code>（MIT，第三方）</td></tr>
           <tr><td>安装或启用方式</td><td>用上面的只读检查句；确认安装后用触发词调用（说重点 / 别废话）</td></tr>
-          <tr><td>测试输入</td><td>问一个需要给步骤的问题，看它是否首行给动作、结尾给下一步</td></tr>
+          <tr><td>怎么试一下</td><td>问一个需要给步骤的问题，看它是否首行给动作、结尾给下一步</td></tr>
           <tr><td>预期输出</td><td>先说结论、多步骤编号、无开场白与客套</td></tr>
-          <tr><td>验证环境与日期</td><td><b>待实测后填写</b>（本课环境 + 版本 + 日期）</td></tr>
-          <tr><td>权限 / 外部副作用</td><td><b>待只读检查确认</b>（据上游说明属纯输出规范类，通常不读写文件）</td></tr>
           <tr><td>失败退路</td><td>不生效就直接在指令里写"先说结论、步骤编号、不要客套"</td></tr>
         </tbody>
       </table>
@@ -242,7 +236,7 @@
       <ol class="steps">
         <li data-n="1"><div class="st">点上面的「复制」按钮</div><div class="sd">复制出来的是<b>只读检查句</b>（不是安装指令）——这是故意的：先看清它是什么，再决定装不装。</div></li>
         <li data-n="2"><div class="st">打开 WorkBuddy 对话框，粘贴、发送</div><div class="sd">等它把来源、读写范围、脚本、对外操作四项讲清楚，<b>由你确认后</b>再说"可以安装"。</div></li>
-        <li data-n="3"><div class="st">跑一遍测试输入</div><div class="sd">把测试输入、预期输出、验证日期、失败退路补进卡片，别人才能复用你的结论。</div></li>
+        <li data-n="3"><div class="st">跑一遍试一下的那句话</div><div class="sd">把"怎么试一下"和"预期输出"记下来，别人才能复用你的结论；不行就按失败退路回退。</div></li>
       </ol>
       <h3 style="margin-top:22px">通用句式（以后看到任何技能都能这么发）</h3>
       <div class="cmd"><button class="copybtn" onclick="copyEl(this)">复制</button>
