@@ -144,6 +144,65 @@
     .table th{ white-space:normal; }
     .table th,.table td{ padding:10px 11px; }
   }
+
+  /* ================= v2.1 学习效率：徽章 / 过关标准 / 过关确认 / 轻链 / 阶段卡 ================= */
+  .badge{ display:inline-flex; align-items:center; align-self:flex-start;
+    font-size:12px; font-weight:800; letter-spacing:1.2px; padding:4px 12px; border-radius:999px;
+    margin-bottom:14px; border:1px solid currentColor; }
+  .badge.must{ color:#0f766e; background:rgba(13,148,136,.09); }
+  .badge.hold{ color:#9a3412; background:rgba(217,119,6,.10); }
+  .badge.after{ color:#6d28d9; background:rgba(124,58,237,.09); }
+  .slide.breath .badge{ align-self:center; }
+
+  .gate-standard{ margin-top:16px; padding:14px 18px; border-radius:12px; max-width:900px;
+    background:rgba(13,148,136,.06); border:1px solid rgba(13,148,136,.18); }
+  .gate-standard h3{ margin:0 0 6px; font-size:15px; letter-spacing:1px; color:#0f766e; }
+  .gate-standard p{ margin:0; font-size:clamp(14px,1.35vw,17px); line-height:1.75; color:var(--body); }
+
+  .passgate{ margin-top:22px; width:100%; max-width:720px; align-self:center;
+    text-align:left; background:#fff; border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:16px 20px; }
+  .passgate h3{ margin:0 0 8px; }
+  .passgate.final{ margin-top:16px; border-color:rgba(124,58,237,.22); }
+  .vet{ display:flex; align-items:flex-start; gap:10px; padding:7px 0; cursor:pointer;
+    font-size:15px; line-height:1.6; }
+  .vet input{ width:18px; height:18px; margin:2px 0 0; flex:0 0 auto; accent-color:var(--teal); cursor:pointer; }
+  .vet.checked{ color:var(--muted); }
+  .passgate .next{ margin:12px 0 0; font-weight:750; color:var(--violet); }
+
+  .dl-light{ margin:14px 0 0; font-size:14px; }
+  .dl-light a{ color:var(--muted); text-decoration:none; border-bottom:1px dashed rgba(15,23,42,.18); }
+  .dl-light a:hover{ color:var(--teal); border-bottom-color:var(--teal); }
+
+  .stage{ display:grid; gap:12px; margin-top:16px; max-width:980px; }
+  .stage .card{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
+  .stage .num{ width:34px; height:34px; border-radius:50%; background:rgba(124,58,237,.1);
+    color:var(--violet); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .stage .card h3{ margin:0 0 4px; }
+  .stage .mini{ list-style:none; margin:0; padding:0; }
+  .stage .mini li{ font-size:14.5px; line-height:1.8; color:var(--body); }
+  .stage .res{ margin:8px 0 0; font-size:13.5px; color:var(--muted); }
+
+  .minitag{ margin-left:auto; font-size:11.5px; font-weight:800; color:var(--violet);
+    background:rgba(124,58,237,.09); border-radius:999px; padding:2px 9px; white-space:nowrap; }
+
+  /* 第 7 讲末页：两块清单容器（手机纵向，桌面并排） */
+  .endgrid{ display:grid; gap:14px; width:100%; max-width:1080px; align-self:center; margin-top:12px; }
+  .endgrid .passgate{ margin-top:0; max-width:none; padding:14px 18px; }
+  .endgrid .passgate h3{ font-size:16px; margin-bottom:6px; }
+  .endgrid .vet{ font-size:14.5px; padding:3px 0; }
+  .endgrid .passgate .next{ margin-top:10px; }
+
+  /* 宽屏：首页三阶段横向三列，一眼看到全貌 */
+  @media (min-width:900px){
+    .stage{ grid-template-columns:repeat(3, minmax(0,1fr)); max-width:none; gap:14px; }
+    .stage .card{ grid-template-columns:auto 1fr; gap:11px; padding:14px 16px; }
+    .stage .num{ width:28px; height:28px; font-size:13px; }
+    .stage .card h3{ font-size:16px; margin-bottom:6px; }
+    .stage .mini li{ font-size:13.5px; line-height:1.7; }
+    .stage .res{ font-size:12.5px; margin-top:8px; }
+    .endgrid{ grid-template-columns:repeat(2, minmax(0,1fr)); align-items:start; }
+  }
 </style>
 </head>
 <body>
@@ -172,6 +231,7 @@
           <div class="sd">本讲才第一次允许计算。<b>验收通过后才做最终报告</b>，最终交付物留到第 5 讲。</div></li>
       </ul>
       <div class="tip warn"><b>边界</b>：本讲只到"初稿 + 核对表"。最终报告与一页展示材料在第 5 讲做。</div>
+      <div class="gate-standard"><h3>本讲过关标准</h3><p>能独立复算两个关键数字，并完成一次局部返工。</p></div>
     </div>
   </section>
 <section class="slide">
@@ -185,14 +245,12 @@
           <tr><td>四份练习文件</td><td>项目说明 + 三份 CSV</td></tr>
         </tbody>
       </table>
-      <div class="dl">
-  <a href="练习包_城市阅读节.zip" download>&#8595; 练习包 · 城市阅读节（第 1–5 讲）</a>
-  <a href="练习包_悦读周.zip" download>&#8595; 练习包 · 悦读周（第 7 讲综合挑战）</a>
-</div>
+      <p class="dl-light">还没有主线练习包？<a href="练习包_城市阅读节.zip" download>下载城市阅读节</a></p>
     </div>
   </section>
 <section class="slide">
     <div class="inner">
+<div class="badge must">必须完成</div>
 <div class="eyebrow">照着做</div>
       <h2>五步：执行 → 抽数回算 → 算清分歧 → 局部返工 → 补来源</h2>
       <ol class="steps">
@@ -239,6 +297,7 @@
   </section>
 <section class="slide">
     <div class="inner">
+<div class="badge after">做完再看</div>
 <div class="eyebrow">预期结果</div>
       <h2>核对表长什么样</h2>
       <p class="lead" style="margin-bottom:8px">核对表应有 4 列：数字 / 结果 / 口径 / 来源（文件 + 纳入及排除的记录编号）。
@@ -264,6 +323,7 @@
   </section>
 <section class="slide">
     <div class="inner">
+<div class="badge hold">卡住再看</div>
 <div class="eyebrow">常见失败</div>
       <h2>四类错误，配好纠正指令</h2>
       <table class="table">
@@ -296,11 +356,19 @@
           <p style="margin:12px 0 0"><b>要说出的一句话</b>：一条极端评分足以让排名翻盘，所以<b>样本量只有 2 条的场次（S06）不能只看平均分就下结论</b>。</p>
         </div>
       </details>
+      <p class="dl-light">更多卡点 <a href="faq.html">→ FAQ</a></p>
     </div>
   </section>
 <section class="slide breath">
     <div class="inner">
 <div class="big">数字不是拿来看的，<br>是拿来复算的</div><div class="rule"></div>
+      <div class="passgate">
+        <h3>本讲过关确认</h3>
+        <label class="vet"><input type="checkbox"> 至少两个关键数字是我自己复算过的</label>
+        <label class="vet"><input type="checkbox"> 核对表每条都有四列，来源含"纳入及排除的记录编号"</label>
+        <label class="vet"><input type="checkbox"> 至少完成一次局部返工（只重算出错那一项）</label>
+        <p class="next">全部完成 → 进入第 5 讲</p>
+      </div>
     </div>
   </section>
 </div>
@@ -383,6 +451,18 @@ document.querySelectorAll('.table').forEach(t=>{
   if(t.parentElement && t.parentElement.classList.contains('tscroll')) return;
   const w=document.createElement('div'); w.className='tscroll';
   t.parentNode.insertBefore(w,t); w.appendChild(t);
+});
+// v2.1：折叠答案的「做完再看」小字（已有该字样的跳过，避免重复）
+document.querySelectorAll('details.ans > summary').forEach(s=>{
+  if(s.textContent.indexOf('做完再看')>=0) return;
+  const t=document.createElement('span'); t.className='minitag'; t.textContent='做完再看';
+  s.appendChild(t);
+});
+// v2.1：本讲过关确认 —— 可点击勾选、有视觉反馈、不存储（刷新即复原）
+document.querySelectorAll('.vet').forEach(l=>{
+  const cb=l.querySelector('input[type=checkbox]'); if(!cb) return;
+  const sync=()=>l.classList.toggle('checked', cb.checked);
+  cb.addEventListener('change', sync); sync();
 });
 show(0);
 </script>
