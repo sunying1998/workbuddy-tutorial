@@ -144,6 +144,65 @@
     .table th{ white-space:normal; }
     .table th,.table td{ padding:10px 11px; }
   }
+
+  /* ================= v2.1 学习效率：徽章 / 过关标准 / 过关确认 / 轻链 / 阶段卡 ================= */
+  .badge{ display:inline-flex; align-items:center; align-self:flex-start;
+    font-size:12px; font-weight:800; letter-spacing:1.2px; padding:4px 12px; border-radius:999px;
+    margin-bottom:14px; border:1px solid currentColor; }
+  .badge.must{ color:#0f766e; background:rgba(13,148,136,.09); }
+  .badge.hold{ color:#9a3412; background:rgba(217,119,6,.10); }
+  .badge.after{ color:#6d28d9; background:rgba(124,58,237,.09); }
+  .slide.breath .badge{ align-self:center; }
+
+  .gate-standard{ margin-top:16px; padding:14px 18px; border-radius:12px; max-width:900px;
+    background:rgba(13,148,136,.06); border:1px solid rgba(13,148,136,.18); }
+  .gate-standard h3{ margin:0 0 6px; font-size:15px; letter-spacing:1px; color:#0f766e; }
+  .gate-standard p{ margin:0; font-size:clamp(14px,1.35vw,17px); line-height:1.75; color:var(--body); }
+
+  .passgate{ margin-top:22px; width:100%; max-width:720px; align-self:center;
+    text-align:left; background:#fff; border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:16px 20px; }
+  .passgate h3{ margin:0 0 8px; }
+  .passgate.final{ margin-top:16px; border-color:rgba(124,58,237,.22); }
+  .vet{ display:flex; align-items:flex-start; gap:10px; padding:7px 0; cursor:pointer;
+    font-size:15px; line-height:1.6; }
+  .vet input{ width:18px; height:18px; margin:2px 0 0; flex:0 0 auto; accent-color:var(--teal); cursor:pointer; }
+  .vet.checked{ color:var(--muted); }
+  .passgate .next{ margin:12px 0 0; font-weight:750; color:var(--violet); }
+
+  .dl-light{ margin:14px 0 0; font-size:14px; }
+  .dl-light a{ color:var(--muted); text-decoration:none; border-bottom:1px dashed rgba(15,23,42,.18); }
+  .dl-light a:hover{ color:var(--teal); border-bottom-color:var(--teal); }
+
+  .stage{ display:grid; gap:12px; margin-top:16px; max-width:980px; }
+  .stage .card{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
+  .stage .num{ width:34px; height:34px; border-radius:50%; background:rgba(124,58,237,.1);
+    color:var(--violet); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .stage .card h3{ margin:0 0 4px; }
+  .stage .mini{ list-style:none; margin:0; padding:0; }
+  .stage .mini li{ font-size:14.5px; line-height:1.8; color:var(--body); }
+  .stage .res{ margin:8px 0 0; font-size:13.5px; color:var(--muted); }
+
+  .minitag{ margin-left:auto; font-size:11.5px; font-weight:800; color:var(--violet);
+    background:rgba(124,58,237,.09); border-radius:999px; padding:2px 9px; white-space:nowrap; }
+
+  /* 第 7 讲末页：两块清单容器（手机纵向，桌面并排） */
+  .endgrid{ display:grid; gap:14px; width:100%; max-width:1080px; align-self:center; margin-top:12px; }
+  .endgrid .passgate{ margin-top:0; max-width:none; padding:14px 18px; }
+  .endgrid .passgate h3{ font-size:16px; margin-bottom:6px; }
+  .endgrid .vet{ font-size:14.5px; padding:3px 0; }
+  .endgrid .passgate .next{ margin-top:10px; }
+
+  /* 宽屏：首页三阶段横向三列，一眼看到全貌 */
+  @media (min-width:900px){
+    .stage{ grid-template-columns:repeat(3, minmax(0,1fr)); max-width:none; gap:14px; }
+    .stage .card{ grid-template-columns:auto 1fr; gap:11px; padding:14px 16px; }
+    .stage .num{ width:28px; height:28px; font-size:13px; }
+    .stage .card h3{ font-size:16px; margin-bottom:6px; }
+    .stage .mini li{ font-size:13.5px; line-height:1.7; }
+    .stage .res{ font-size:12.5px; margin-top:8px; }
+    .endgrid{ grid-template-columns:repeat(2, minmax(0,1fr)); align-items:start; }
+  }
 </style>
 </head>
 <body>
@@ -198,18 +257,34 @@
     <div class="inner">
 <div class="eyebrow">学习路径</div>
       <h2>七讲，按顺序走</h2>
-      <table class="table">
-        <thead><tr><th>讲</th><th>主题</th><th>你会产出什么</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>给复杂任务定交付标准</td><td>一张<strong>任务卡</strong></td></tr>
-          <tr><td>2</td><td>先规划，再执行</td><td>一份<strong>经你修改的计划</strong></td></tr>
-          <tr><td>3</td><td>让多个文件共同说话</td><td><strong>文件关系图 + 资料缺口清单</strong></td></tr>
-          <tr><td>4</td><td>执行、核验、局部返工</td><td><strong>报告初稿 + 来源与结论核对表</strong></td></tr>
-          <tr><td>5</td><td>从分析到可交付成果</td><td><strong>最终报告 + 一页展示材料</strong></td></tr>
-          <tr><td>6</td><td>选择并验证 Skill / 专家</td><td><strong>能力选择记录卡</strong></td></tr>
-          <tr><td>7</td><td>复用与综合挑战</td><td><strong>任务模板 + 自动化草案 + 独立完成记录</strong></td></tr>
-        </tbody>
-      </table>
+      <p class="lead">三个阶段：<strong>学完第 1–3 讲，你能控制任务方向；学完第 4–5 讲，你能交付可信结果；完成第 6–7 讲，才算真正掌握并能迁移。</strong></p>
+      <div class="stage">
+        <div class="card"><div class="num">一</div><div>
+          <h3>把任务说清（第 1–3 讲）</h3>
+          <ul class="mini">
+            <li><b>1 定义交付标准</b> → 任务卡</li>
+            <li><b>2 审阅执行计划</b> → 经你修改的计划</li>
+            <li><b>3 确认文件关系与口径</b> → 文件关系图 + 资料缺口清单</li>
+          </ul>
+          <p class="res">阶段结果：能控制 WorkBuddy 做什么、使用什么资料、按照什么口径做。</p>
+        </div></div>
+        <div class="card"><div class="num">二</div><div>
+          <h3>把结果做对（第 4–5 讲）</h3>
+          <ul class="mini">
+            <li><b>4 执行、复算、局部返工</b> → 报告初稿 + 来源与结论核对表</li>
+            <li><b>5 形成最终交付物</b> → 最终报告 + 一页展示材料</li>
+          </ul>
+          <p class="res">阶段结果：能判断结果是否可信，并交出别人可以复核的成果。</p>
+        </div></div>
+        <div class="card"><div class="num">三</div><div>
+          <h3>把方法复用（第 6–7 讲）</h3>
+          <ul class="mini">
+            <li><b>6 选择普通指令、Skill 或专家</b> → 能力选择记录卡</li>
+            <li><b>7 换一组数据独立完成</b> → 任务模板 + 自动化草案 + 独立完成记录</li>
+          </ul>
+          <p class="res">阶段结果：能把方法迁移到下一次任务，而不只是照着案例做。</p>
+        </div></div>
+      </div>
       <div class="tip">顺序不能跳：第 3 讲的"资料缺口清单"是第 4 讲计算的前提；第 4 讲的核对表通过之后，才做第 5 讲的最终交付物。
       另有 <a href="skills.html" style="color:var(--violet)">精选 Skills</a> 与 <a href="faq.html" style="color:var(--violet)">FAQ</a> 两个独立页面，随时可查。</div>
     </div>
@@ -224,6 +299,7 @@
       <div class="dl">
   <a href="练习包_城市阅读节.zip" download>&#8595; 练习包 · 城市阅读节（第 1–5 讲）</a>
   <a href="练习包_悦读周.zip" download>&#8595; 练习包 · 悦读周（第 7 讲综合挑战）</a>
+  <a href="学习产物清单.md" download>&#8595; 下载 · 学习产物清单</a>
 </div>
       <h3 style="margin-top:24px">最终交付长什么样（先看目标）</h3>
       <ul class="steps" style="margin-top:6px">
@@ -323,6 +399,18 @@ document.querySelectorAll('.table').forEach(t=>{
   if(t.parentElement && t.parentElement.classList.contains('tscroll')) return;
   const w=document.createElement('div'); w.className='tscroll';
   t.parentNode.insertBefore(w,t); w.appendChild(t);
+});
+// v2.1：折叠答案的「做完再看」小字（已有该字样的跳过，避免重复）
+document.querySelectorAll('details.ans > summary').forEach(s=>{
+  if(s.textContent.indexOf('做完再看')>=0) return;
+  const t=document.createElement('span'); t.className='minitag'; t.textContent='做完再看';
+  s.appendChild(t);
+});
+// v2.1：本讲过关确认 —— 可点击勾选、有视觉反馈、不存储（刷新即复原）
+document.querySelectorAll('.vet').forEach(l=>{
+  const cb=l.querySelector('input[type=checkbox]'); if(!cb) return;
+  const sync=()=>l.classList.toggle('checked', cb.checked);
+  cb.addEventListener('change', sync); sync();
 });
 show(0);
 </script>
