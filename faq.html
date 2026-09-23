@@ -144,6 +144,65 @@
     .table th{ white-space:normal; }
     .table th,.table td{ padding:10px 11px; }
   }
+
+  /* ================= v2.1 学习效率：徽章 / 过关标准 / 过关确认 / 轻链 / 阶段卡 ================= */
+  .badge{ display:inline-flex; align-items:center; align-self:flex-start;
+    font-size:12px; font-weight:800; letter-spacing:1.2px; padding:4px 12px; border-radius:999px;
+    margin-bottom:14px; border:1px solid currentColor; }
+  .badge.must{ color:#0f766e; background:rgba(13,148,136,.09); }
+  .badge.hold{ color:#9a3412; background:rgba(217,119,6,.10); }
+  .badge.after{ color:#6d28d9; background:rgba(124,58,237,.09); }
+  .slide.breath .badge{ align-self:center; }
+
+  .gate-standard{ margin-top:16px; padding:14px 18px; border-radius:12px; max-width:900px;
+    background:rgba(13,148,136,.06); border:1px solid rgba(13,148,136,.18); }
+  .gate-standard h3{ margin:0 0 6px; font-size:15px; letter-spacing:1px; color:#0f766e; }
+  .gate-standard p{ margin:0; font-size:clamp(14px,1.35vw,17px); line-height:1.75; color:var(--body); }
+
+  .passgate{ margin-top:22px; width:100%; max-width:720px; align-self:center;
+    text-align:left; background:#fff; border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:16px 20px; }
+  .passgate h3{ margin:0 0 8px; }
+  .passgate.final{ margin-top:16px; border-color:rgba(124,58,237,.22); }
+  .vet{ display:flex; align-items:flex-start; gap:10px; padding:7px 0; cursor:pointer;
+    font-size:15px; line-height:1.6; }
+  .vet input{ width:18px; height:18px; margin:2px 0 0; flex:0 0 auto; accent-color:var(--teal); cursor:pointer; }
+  .vet.checked{ color:var(--muted); }
+  .passgate .next{ margin:12px 0 0; font-weight:750; color:var(--violet); }
+
+  .dl-light{ margin:14px 0 0; font-size:14px; }
+  .dl-light a{ color:var(--muted); text-decoration:none; border-bottom:1px dashed rgba(15,23,42,.18); }
+  .dl-light a:hover{ color:var(--teal); border-bottom-color:var(--teal); }
+
+  .stage{ display:grid; gap:12px; margin-top:16px; max-width:980px; }
+  .stage .card{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
+  .stage .num{ width:34px; height:34px; border-radius:50%; background:rgba(124,58,237,.1);
+    color:var(--violet); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .stage .card h3{ margin:0 0 4px; }
+  .stage .mini{ list-style:none; margin:0; padding:0; }
+  .stage .mini li{ font-size:14.5px; line-height:1.8; color:var(--body); }
+  .stage .res{ margin:8px 0 0; font-size:13.5px; color:var(--muted); }
+
+  .minitag{ margin-left:auto; font-size:11.5px; font-weight:800; color:var(--violet);
+    background:rgba(124,58,237,.09); border-radius:999px; padding:2px 9px; white-space:nowrap; }
+
+  /* 第 7 讲末页：两块清单容器（手机纵向，桌面并排） */
+  .endgrid{ display:grid; gap:14px; width:100%; max-width:1080px; align-self:center; margin-top:12px; }
+  .endgrid .passgate{ margin-top:0; max-width:none; padding:14px 18px; }
+  .endgrid .passgate h3{ font-size:16px; margin-bottom:6px; }
+  .endgrid .vet{ font-size:14.5px; padding:3px 0; }
+  .endgrid .passgate .next{ margin-top:10px; }
+
+  /* 宽屏：首页三阶段横向三列，一眼看到全貌 */
+  @media (min-width:900px){
+    .stage{ grid-template-columns:repeat(3, minmax(0,1fr)); max-width:none; gap:14px; }
+    .stage .card{ grid-template-columns:auto 1fr; gap:11px; padding:14px 16px; }
+    .stage .num{ width:28px; height:28px; font-size:13px; }
+    .stage .card h3{ font-size:16px; margin-bottom:6px; }
+    .stage .mini li{ font-size:13.5px; line-height:1.7; }
+    .stage .res{ font-size:12.5px; margin-top:8px; }
+    .endgrid{ grid-template-columns:repeat(2, minmax(0,1fr)); align-items:start; }
+  }
 </style>
 </head>
 <body>
@@ -172,6 +231,7 @@
   </section>
 <section class="slide">
     <div class="inner">
+<div class="badge hold">卡住再看</div>
 <div class="eyebrow">卡点 1–3</div>
       <h2>计划、文件、数字</h2>
       <table class="table">
@@ -192,6 +252,7 @@
   </section>
 <section class="slide">
     <div class="inner">
+<div class="badge hold">卡住再看</div>
 <div class="eyebrow">卡点 4–6</div>
       <h2>技能、自动化、概念混淆</h2>
       <table class="table">
@@ -212,6 +273,7 @@
   </section>
 <section class="slide">
     <div class="inner">
+<div class="badge hold">卡住再看</div>
 <div class="eyebrow">安全与边界</div>
       <h2>几条官方红线</h2>
       <table class="table">
@@ -315,6 +377,18 @@ document.querySelectorAll('.table').forEach(t=>{
   if(t.parentElement && t.parentElement.classList.contains('tscroll')) return;
   const w=document.createElement('div'); w.className='tscroll';
   t.parentNode.insertBefore(w,t); w.appendChild(t);
+});
+// v2.1：折叠答案的「做完再看」小字（已有该字样的跳过，避免重复）
+document.querySelectorAll('details.ans > summary').forEach(s=>{
+  if(s.textContent.indexOf('做完再看')>=0) return;
+  const t=document.createElement('span'); t.className='minitag'; t.textContent='做完再看';
+  s.appendChild(t);
+});
+// v2.1：本讲过关确认 —— 可点击勾选、有视觉反馈、不存储（刷新即复原）
+document.querySelectorAll('.vet').forEach(l=>{
+  const cb=l.querySelector('input[type=checkbox]'); if(!cb) return;
+  const sync=()=>l.classList.toggle('checked', cb.checked);
+  cb.addEventListener('change', sync); sync();
 });
 show(0);
 </script>
